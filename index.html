@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>IDH Christmas — Share a message</title>
+  <link rel="stylesheet" href="styles.css" />
+  <meta name="description" content="Temporary Christmas page to share messages and animated images." />
+</head>
+<body>
+  <canvas id="snow-canvas" aria-hidden="true"></canvas>
+
+  <header class="hero">
+    <h1>🎄 IDH Christmas — Share a message</h1>
+    <p class="subtitle">Add a short festive message and sprinkle animated images around the page.</p>
+  </header>
+
+  <main class="container">
+    <section class="composer card" aria-labelledby="compose-title">
+      <h2 id="compose-title">Write a message</h2>
+      <form id="message-form">
+        <input id="name" type="text" placeholder="Your name (optional)" maxlength="40" />
+        <textarea id="message" placeholder="Write a short festive message..." maxlength="280" required></textarea>
+        <div class="controls">
+          <button type="submit" id="add-btn" class="btn">Share message</button>
+          <button type="button" id="clear-btn" class="btn btn--ghost" title="Clear all saved messages">Clear local</button>
+        </div>
+      </form>
+
+      <div class="share">
+        <label for="share-msg">Share link with prefilled message</label>
+        <input id="share-msg" placeholder="Type a message to create a share link" />
+        <button id="make-link" class="btn">Make link</button>
+        <a id="share-link" class="share-link" href="#" target="_blank" rel="noopener">Open share link</a>
+      </div>
+
+      <div class="backend-setup card" id="backend-setup" aria-live="polite">
+        <h3>Shared messages (optional)</h3>
+        <p id="backend-status">Backend: <span id="backend-indicator">Local only</span></p>
+        <p class="muted">To enable shared messages across visitors, create a Supabase project and add a <code>config.js</code> file with your project URL and anon key (see README).</p>
+      </div>
+    </section>
+
+    <section class="images card" aria-labelledby="images-title">
+      <h2 id="images-title">Animated images</h2>
+      <p>Add GIF/image URLs to show them in the carousel.</p>
+      <div class="image-controls">
+        <input id="image-url" placeholder="https://..." />
+        <button id="add-image" class="btn">Add image</button>
+      </div>
+      <div id="image-carousel" class="carousel" aria-live="polite"></div>
+    </section>
+
+    <section class="messages card" aria-labelledby="messages-title">
+      <h2 id="messages-title">Messages</h2>
+      <div id="messages-list" class="messages-list" role="list"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <small>Made for the holidays — temporary page. Messages are stored locally unless shared backend is configured.</small>
+  </footer>
+
+  <!-- Optional user-provided config: create config.js from config.example.js and add your SUPABASE_URL + SUPABASE_KEY -->
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
